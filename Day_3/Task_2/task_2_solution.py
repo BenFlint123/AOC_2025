@@ -22,9 +22,9 @@ def get_example_input():
 
 def calculate_largest_joltage(joltages, num_digits, bank_joltage):
     if num_digits == 1:
-        max_joltage = max(joltages)
+        max_joltage = max(joltages) # if this is the last battery, take highest joltage
     else:
-        max_joltage = max(joltages[:-num_digits+1])  # need to leave room for remaining joltages
+        max_joltage = max(joltages[:-num_digits+1])  # otherwise need to leave room for remaining joltages
     bank_joltage = str(bank_joltage)
     for i, val in enumerate(joltages):
         if val == max_joltage:
@@ -36,11 +36,8 @@ def calculate_largest_joltage(joltages, num_digits, bank_joltage):
                 return calculate_largest_joltage(remaining_joltages, num_digits-1, bank_joltage)
 
 def main():
-
-
     data = read_input(r"AOC_2025\Day_3\Day_3_input.txt")
     # data = get_example_input()
-
 
     total_joltage = 0
 
@@ -48,7 +45,6 @@ def main():
         joltages = [int(char) for char in list(bank)]
         bank_joltage = int(calculate_largest_joltage(joltages, 12, ''))
         total_joltage += bank_joltage
-
 
     print(f"Total joltage: {total_joltage}")
 
